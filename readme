@@ -1,0 +1,13 @@
+Author: Bharathan Rajaram
+
+This is a response to a test set by Professor Benjamin C. Lok at the University
+of Florida. I am an Indian and have no official affiliation with him. This work
+is being done purely out of my own interest. Professor Lok has been very kind 
+in suggestig that I do this project.
+
+Language: C++
+Libraries: OGRE, OIS
+
+This project is one possible hybrid implementation of  ratirisation and 
+ray tracing. I am making the code public under XXX. I hope someone 
+finds it useful.  
