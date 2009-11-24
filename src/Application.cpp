@@ -14,9 +14,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,\
 int main(int *argc, char *argv[])
 #endif
 {
-        try
+        HybridApplication app;
+	try
         {
-		//app.go();
+		app.go();
         } 
         catch( Ogre::Exception& e )
         {
