@@ -22,7 +22,7 @@ class HybridApplication
 		bool setupRenderSystem();
 		virtual void createRenderWindow();
 		virtual void createScene();
-		virtual void createRayTraceSxcene();
+		virtual void createRayTraceScene();
 		void setupInputSystem();
 		void createFrameListener();
 		virtual void startRenderLoop();

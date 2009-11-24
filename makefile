@@ -14,9 +14,11 @@ EXECUTABLE = Application
 vpath %.cpp src
 
 all: $(SOURCES) $(EXECUTABLE)
-	g++ $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
+	$(LD) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
+
+HybridApplication.o: include/HybridApplication.h
 
 clean:
 	rm -f Application
