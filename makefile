@@ -8,10 +8,10 @@ LDFLAGS = $(shell pkg-config --libs $(LIBS))
 
 vpath %.cpp src
 
-all: HybridApplication
+all: Application
 
 clean:
-	rm -f HybridApplication
+	rm -f Application
 	rm -f *.o
 
 
