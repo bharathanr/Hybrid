@@ -6,9 +6,17 @@ CPPFLAGS += -I ./include
 LD = g++
 LDFLAGS = $(shell pkg-config --libs $(LIBS))
 
+#The meat!
+SOURCES= Application.cpp HybridApplication.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE = Application
+
 vpath %.cpp src
 
-all: Application
+all: $(SOURCES) $(EXECUTABLE)
+	g++ $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
 
 clean:
 	rm -f Application

@@ -13,9 +13,9 @@ class HybridApplication
 	public:
 		HybridApplication();
 		~HybridApplication();
-		void go();	//Start the application
+		bool go();	//Start the application
 	protected:
-		Ogre::Root mRoot;
+		Ogre::Root *mRoot;
 		
 		bool initialiseOgre();
 		virtual void initialiseResources();
