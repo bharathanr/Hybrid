@@ -17,8 +17,15 @@ class HybridApplication
 	protected:
 		Ogre::Root mRoot;
 		
-		void initialiseOgre();
-		void createScene();
+		bool initialiseOgre();
+		virtual void initialiseResources();
+		bool setupRenderSystem();
+		virtual void createRenderWindow();
+		virtual void createScene();
+		virtual void createRayTraceSxcene();
+		void setupInputSystem();
+		void createFrameListener();
+		virtual void startRenderLoop();
+		bool initialiseRayTraceSystem();
 
-
-}
+};
