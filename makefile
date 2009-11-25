@@ -21,7 +21,7 @@ $(EXECUTABLE): $(OBJECTS)
 HybridApplication.o: include/HybridApplication.h
 
 clean:
-	rm -f Application
+	rm -f $(EXECUTABLE) 
 	rm -f *.o
 
 

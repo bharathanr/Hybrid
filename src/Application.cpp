@@ -15,6 +15,7 @@ int main(int *argc, char *argv[])
 #endif
 {
 	HybridApplication app;
+	std::cout<<"Hello";
 	try
         {
 		app.go();
