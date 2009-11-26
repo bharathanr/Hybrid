@@ -1,5 +1,7 @@
 #include"HybridApplication.h"
 
+using namespace Ogre;
+
 HybridApplication::HybridApplication()
 	: mRoot(0)
 {
@@ -13,22 +15,27 @@ HybridApplication::~HybridApplication()
 
 void HybridApplication::initialiseOgre()
 {
-	mRoot = new Ogre::Root("", "");
+	mRoot = new Ogre::Root();
 }
 
 bool HybridApplication::go()
 {
-	initialiseOgre()
+	initialiseOgre();
 	initialiseResources();
 	if(!setupRenderSystem())
 		return false;
 	createRenderWindow();
 	createScene();
+
+	//Set the default number of mipmaps.
+	TextureManager::getSingleton().setDefaultNumMipmaps(5);
+	//Resource loading -- Do this with a little more care later.
+	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	startRenderLoop();
 	return true;
 }
 
-void HybridAppliccation::setupRenderSystem()
+bool HybridApplication::setupRenderSystem()
 {
 	if (!mRoot->restoreConfig() && !mRoot->showConfigDialog())
 		return false;
@@ -78,13 +85,10 @@ void HybridApplication::initialiseResources()
 		}
    	}
 
-	//Set the default number of mipmaps.
-	TextureManager::getSingleton().setDefaultNumMipmaps(5);
-	//Resource loading -- Do this with a little more care later.
-	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-
 }
 
 void HybridApplication::startRenderLoop()
 {
+	//Improve this later
+	mRoot->startRendering();
 }
