@@ -11,13 +11,39 @@ HybridApplication::~HybridApplication()
 	delete mRoot;
 }
 
+void HybridApplication::initialiseOgre()
+{
+	mRoot = new Ogre::Root("", "");
+}
+
 bool HybridApplication::go()
 {
+	initialiseOgre()
+	initialiseResources();
+	if(!setupRenderSystem())
+		return false;
+	createRenderWindow();
+	createScene();
+	startRenderLoop();
 	return true;
+}
+
+void HybridAppliccation::setupRenderSystem()
+{
+	if (!mRoot->restoreConfig() && !mRoot->showConfigDialog())
+		return false;
+	//This else is for intent more than anything else.
+	else
+		return true;
 }
 
 void HybridApplication::createScene()
 {
+	//Refactoring needed. Think carefully.
+        SceneManager *mgr = mRoot->createSceneManager(ST_GENERIC, "Default SceneManager");
+	Camera *cam = mgr->createCamera("Camera");
+	Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
+
 }
 
 void HybridApplication::createRayTraceScene()
@@ -26,10 +52,37 @@ void HybridApplication::createRayTraceScene()
 
 void HybridApplication::createRenderWindow()
 {
+	mRoot->initialise(true, "Tutorial Render Window");
 }
 
 void HybridApplication::initialiseResources()
 {
+	//Define Resources
+	
+	//Handle with more care later.
+        String secName, typeName, archName;
+	ConfigFile cf;
+	cf.load("resources.cfg");
+        ConfigFile::SectionIterator seci = cf.getSectionIterator();
+        while (seci.hasMoreElements())
+        {
+	        secName = seci.peekNextKey();
+	        ConfigFile::SettingsMultiMap *settings = seci.getNext();
+	        ConfigFile::SettingsMultiMap::iterator i;
+	        for (i = settings->begin(); i != settings->end(); ++i)
+	        {
+	        	typeName = i->first;
+			archName = i->second;
+			ResourceGroupManager::getSingleton().\
+				addResourceLocation(archName, typeName, secName); 
+		}
+   	}
+
+	//Set the default number of mipmaps.
+	TextureManager::getSingleton().setDefaultNumMipmaps(5);
+	//Resource loading -- Do this with a little more care later.
+	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
 }
 
 void HybridApplication::startRenderLoop()
