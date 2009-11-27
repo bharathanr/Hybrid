@@ -20,7 +20,8 @@ class HybridApplication
 		Ogre::SceneManager *sceneMgr;
 	
 		void initialiseOgre();
-		virtual void initialiseResources();
+		virtual void initialiseResourcePaths();
+		void initialiseResources();
 		bool setupRenderSystem();
 		virtual void createRenderWindow();
 		virtual void createScene();

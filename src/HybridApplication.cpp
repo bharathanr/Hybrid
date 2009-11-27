@@ -9,7 +9,7 @@ HybridApplication::HybridApplication()
 
 HybridApplication::~HybridApplication()
 {
-	//Delete the Ogre root.-- if it exists
+	//Delete the Ogre root.
 	delete mRoot;
 }
 
@@ -20,17 +20,21 @@ void HybridApplication::initialiseOgre()
 
 bool HybridApplication::go()
 {
+	//1. Create Ogre root. Rely on the default plugin loading mechanism.
 	initialiseOgre();
-	initialiseResources();
+	//2.Initialise resources from resources.cfg - For now!
+	initialiseResourcePaths();
+	//3.Try to initialise a render system.
+	//Uses the config dialog and ogre.cfg restoration for now.
 	if(!setupRenderSystem())
 		return false;
+	//4.Create the render window using mRoot->initialise
 	createRenderWindow();
+	//5.Create a scene.
 	createScene();
-
-	//Set the default number of mipmaps.
-	TextureManager::getSingleton().setDefaultNumMipmaps(5);
-	//Resource loading -- Do this with a little more care later.
-	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	//6.Set the default no. of mipmaps and initialise resources as needed.
+	initialiseResources();
+	//7.Keep looping until exit.
 	startRenderLoop();
 	return true;
 }
@@ -62,7 +66,7 @@ void HybridApplication::createRenderWindow()
 	mRoot->initialise(true, "Tutorial Render Window");
 }
 
-void HybridApplication::initialiseResources()
+void HybridApplication::initialiseResourcePaths()
 {
 	//Define Resources
 	
@@ -85,6 +89,15 @@ void HybridApplication::initialiseResources()
 		}
    	}
 
+}
+
+void HybridApplication::initialiseResources()
+{
+	//Set the default number of mipmaps.
+	TextureManager::getSingleton().setDefaultNumMipmaps(5);
+	//Resource loading -- Change this to initialise only the resources
+	//needed later.
+	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 void HybridApplication::startRenderLoop()
