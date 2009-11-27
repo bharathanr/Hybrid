@@ -7,9 +7,9 @@ LD = g++
 LDFLAGS = $(shell pkg-config --libs $(LIBS))
 
 #The meat!
-SOURCES= Application.cpp HybridApplication.cpp
+SOURCES= RunApplication.cpp HybridApplication.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE = Application
+EXECUTABLE = RunApplication
 
 vpath %.cpp src
 
