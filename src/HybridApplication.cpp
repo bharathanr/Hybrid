@@ -48,13 +48,21 @@ bool HybridApplication::setupRenderSystem()
 		return true;
 }
 
+void HybridApplication::chooseSceneManager()
+{
+        mSceneManager = mRoot->createSceneManager(ST_GENERIC, "HybridSceneManager");
+}
+
+void HybridApplication::createViewports()
+{
+	Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
+}
+
+
 void HybridApplication::createScene()
 {
-	//Refactoring needed. Think carefully.
-        SceneManager *mgr = mRoot->createSceneManager(ST_GENERIC, "Default SceneManager");
-	Camera *cam = mgr->createCamera("Camera");
-	Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
-
+	
+	Camera *cam = mSceneManager->createCamera("Camera");
 }
 
 void HybridApplication::createRayTraceScene()

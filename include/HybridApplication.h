@@ -16,12 +16,15 @@ class HybridApplication
 		bool go();	//Start the application
 	protected:
 		Ogre::Root *mRoot;
-		Ogre::RenderWindow *window;
 		Ogre::SceneManager *sceneMgr;
 	
 		void initialiseOgre();
 		virtual void initialiseResourcePaths();
-		void initialiseResources();
+		virtual void initialiseResources();
+		virtual void chooseSceneManager();
+		virtual void createCiewports();
+		void setupInputSystem();
+		void createFrameListener();
 		bool setupRenderSystem();
 		virtual void createRenderWindow();
 		virtual void createScene();
