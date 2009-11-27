@@ -1,7 +1,5 @@
 #include"HybridApplication.h"
 
-using namespace Ogre;
-
 HybridApplication::HybridApplication()
 	: mRoot(0)
 {
@@ -50,15 +48,18 @@ bool HybridApplication::setupRenderSystem()
 
 void HybridApplication::chooseSceneManager()
 {
-        sceneManager = mRoot->createSceneManager(ST_GENERIC, "HybridSceneManager");
+        sceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
 }
 
 
 void HybridApplication::createScene()
 {
 	chooseSceneManager();
-	Camera *cam = sceneManager->createCamera("Camera");
-	Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
+	Ogre::Camera *cam = sceneManager->createCamera("Camera");
+	Ogre::Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
+	vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
+	cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
+			Ogre::Real(vp->getActualHeight()));
 }
 
 void HybridApplication::createRayTraceScene()
@@ -75,20 +76,20 @@ void HybridApplication::initialiseResourcePaths()
 	//Define Resources
 	
 	//Handle with more care later.
-        String secName, typeName, archName;
-	ConfigFile cf;
+	Ogre::String secName, typeName, archName;
+	Ogre::ConfigFile cf;
 	cf.load("resources.cfg");
-        ConfigFile::SectionIterator seci = cf.getSectionIterator();
+	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
         while (seci.hasMoreElements())
         {
 	        secName = seci.peekNextKey();
-	        ConfigFile::SettingsMultiMap *settings = seci.getNext();
-	        ConfigFile::SettingsMultiMap::iterator i;
+		Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+		Ogre::ConfigFile::SettingsMultiMap::iterator i;
 	        for (i = settings->begin(); i != settings->end(); ++i)
 	        {
 	        	typeName = i->first;
 			archName = i->second;
-			ResourceGroupManager::getSingleton().\
+			Ogre::ResourceGroupManager::getSingleton().\
 				addResourceLocation(archName, typeName, secName); 
 		}
    	}
@@ -98,10 +99,10 @@ void HybridApplication::initialiseResourcePaths()
 void HybridApplication::initialiseResources()
 {
 	//Set the default number of mipmaps.
-	TextureManager::getSingleton().setDefaultNumMipmaps(5);
+	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 	//Resource loading -- Change this to initialise only the resources
 	//needed later.
-	ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 void HybridApplication::startRenderLoop()
