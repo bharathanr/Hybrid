@@ -5,4 +5,7 @@
 
 namespace HybridRenderer
 {
+	class InputListener: public KeyboardListener, public MouseListener
+	{
+	};
 }
