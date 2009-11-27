@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,\
 int main(int *argc, char *argv[])
 #endif
 {
-	HybridApplication app;
+	HybridRenderer::Application app;
 	std::cout<<"Hello";
 	try
         {

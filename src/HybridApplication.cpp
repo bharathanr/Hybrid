@@ -1,112 +1,115 @@
 #include"HybridApplication.h"
-
-HybridApplication::HybridApplication()
-	: mRoot(0)
+namespace HybridRenderer
 {
-}
+	Application::Application()
+		: mRoot(0)
+	{
+	}
 
-HybridApplication::~HybridApplication()
-{
-	//Delete the Ogre root.
-	delete mRoot;
-}
+	Application::~Application()
+	{
+		//Delete the Ogre root.
+		delete mRoot;
+	}	
 
-void HybridApplication::initialiseOgre()
-{
-	mRoot = new Ogre::Root();
-}
+	void Application::initialiseOgre()
+	{
+		mRoot = new Ogre::Root();
+	}
 
-bool HybridApplication::go()
-{
-	//1. Create Ogre root. Rely on the default plugin loading mechanism.
-	initialiseOgre();
-	//2.Initialise resources from resources.cfg - For now!
-	initialiseResourcePaths();
-	//3.Try to initialise a render system.
-	//Uses the config dialog and ogre.cfg restoration for now.
-	if(!setupRenderSystem())
-		return false;
-	//4.Create the render window using mRoot->initialise
-	createRenderWindow();
-	//5.Create a scene.
-	createScene();
-	//6.Set the default no. of mipmaps and initialise resources as needed.
-	initialiseResources();
-	//7.Keep looping until exit.
-	startRenderLoop();
-	return true;
-}
-
-bool HybridApplication::setupRenderSystem()
-{
-	if (!mRoot->restoreConfig() && !mRoot->showConfigDialog())
-		return false;
-	//This else is for intent more than anything else.
-	else
+	bool Application::go()
+	{
+		//1. Create Ogre root. Rely on the default plugin loading mechanism.
+		initialiseOgre();
+		//2.Initialise resources from resources.cfg - For now!
+		initialiseResourcePaths();
+		//3.Try to initialise a render system.
+		//Uses the config dialog and ogre.cfg restoration for now.
+		if(!setupRenderSystem())
+			return false;
+		//4.Create the render window using mRoot->initialise
+		createRenderWindow();
+		//5.Create a scene.
+		createScene();
+		//6.Set the default no. of mipmaps and initialise resources as needed.
+		initialiseResources();
+		//7.Keep looping until exit.
+		startRenderLoop();
 		return true;
-}
+	}		
 
-void HybridApplication::chooseSceneManager()
-{
-        sceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
-}
+	bool Application::setupRenderSystem()
+	{
+		if (!mRoot->restoreConfig() && !mRoot->showConfigDialog())
+			return false;
+		//This else is for intent more than anything else.
+		else
+			return true;
+	}	
+
+	void Application::chooseSceneManager()
+	{
+        	sceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
+	}	
 
 
-void HybridApplication::createScene()
-{
-	chooseSceneManager();
-	Ogre::Camera *cam = sceneManager->createCamera("Camera");
-	Ogre::Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
-	vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
-	cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
-			Ogre::Real(vp->getActualHeight()));
-}
+	void Application::createScene()
+	{
+		chooseSceneManager();
+		Ogre::Camera *cam = sceneManager->createCamera("Camera");
+		Ogre::Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
+		vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
+		cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
+				Ogre::Real(vp->getActualHeight()));
+	}
 
-void HybridApplication::createRayTraceScene()
-{
-}
+	void Application::createRayTraceScene()
+	{
+	}
 
-void HybridApplication::createRenderWindow()
-{
-	mRoot->initialise(true, "Tutorial Render Window");
-}
+	void Application::createRenderWindow()
+	{
+		mRoot->initialise(true, "Tutorial Render Window");
+	}
 
-void HybridApplication::initialiseResourcePaths()
-{
-	//Define Resources
+	void Application::initialiseResourcePaths()
+	{
+		//Define Resources
+		
+		//Handle with more care later.
+		Ogre::String secName, typeName, archName;
+		Ogre::ConfigFile cf;
+		cf.load("resources.cfg");
+		Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+        	while (seci.hasMoreElements())
+        	{
+	        	secName = seci.peekNextKey();
+			Ogre::ConfigFile::SettingsMultiMap *settings = seci.\
+								      getNext();
+			Ogre::ConfigFile::SettingsMultiMap::iterator i;
+		        for (i = settings->begin(); i != settings->end(); ++i)
+		        {
+		        	typeName = i->first;
+				archName = i->second;
+				Ogre::ResourceGroupManager::getSingleton().\
+					addResourceLocation(archName, typeName, secName); 
+			}
+   		}
 	
-	//Handle with more care later.
-	Ogre::String secName, typeName, archName;
-	Ogre::ConfigFile cf;
-	cf.load("resources.cfg");
-	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
-        while (seci.hasMoreElements())
-        {
-	        secName = seci.peekNextKey();
-		Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-		Ogre::ConfigFile::SettingsMultiMap::iterator i;
-	        for (i = settings->begin(); i != settings->end(); ++i)
-	        {
-	        	typeName = i->first;
-			archName = i->second;
-			Ogre::ResourceGroupManager::getSingleton().\
-				addResourceLocation(archName, typeName, secName); 
-		}
-   	}
+	}		
 
-}
+	void Application::initialiseResources()
+	{
+		//Set the default number of mipmaps.
+		Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+		//Resource loading -- Change this to initialise only the resources
+		//needed later.
+		Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	}
 
-void HybridApplication::initialiseResources()
-{
-	//Set the default number of mipmaps.
-	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
-	//Resource loading -- Change this to initialise only the resources
-	//needed later.
-	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
-}
-
-void HybridApplication::startRenderLoop()
-{
-	//Improve this later
-	mRoot->startRendering();
-}
+	void Application::startRenderLoop()
+	{
+		//Improve this later
+		mRoot->startRendering();
+	}
+}	

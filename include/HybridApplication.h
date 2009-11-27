@@ -6,29 +6,32 @@
 #include<Ogre.h>
 
 /*
- * Class HybridApplication
+ * Class Application
  */
-class HybridApplication
+namespace HybridRenderer
 {
-	public:
-		HybridApplication();
-		~HybridApplication();
-		bool go();	//Start the application
-	protected:
-		Ogre::Root *mRoot;
-		Ogre::SceneManager *sceneManager;
-	
-		void initialiseOgre();
-		virtual void initialiseResourcePaths();
-		virtual void initialiseResources();
-		virtual void chooseSceneManager();
-		void setupInputSystem();
-		bool setupRenderSystem();
-		virtual void createRenderWindow();
-		virtual void createScene();
-		virtual void createRayTraceScene();
-		void createFrameListener();
-		virtual void startRenderLoop();
-		bool initialiseRayTraceSystem();
+	class Application
+	{
+		public:
+			Application();
+			~Application();
+			bool go();	//Start the application
+		protected:
+			Ogre::Root *mRoot;
+			Ogre::SceneManager *sceneManager;
+		
+			void initialiseOgre();
+			virtual void initialiseResourcePaths();
+			virtual void initialiseResources();
+			virtual void chooseSceneManager();
+			void setupInputSystem();
+			bool setupRenderSystem();
+			virtual void createRenderWindow();
+			virtual void createScene();
+			virtual void createRayTraceScene();
+			void createFrameListener();
+			virtual void startRenderLoop();
+			bool initialiseRayTraceSystem();
 
-};
+	};
+}

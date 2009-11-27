@@ -3,3 +3,6 @@
 #include "OISMouse.h"
 #include "OISKeyboard.h"
 
+namespace HybridRenderer
+{
+}

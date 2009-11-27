@@ -1,7 +1,10 @@
 #include<Ogre.h>
 
-class HybridFrameListener: public Ogre::FrameListener
+namespace HybridRenderer
 {
-	public:
-		virtual bool frameStarted(const Ogre::FrameEvent &evt);
-};
+	class FrameListener: public Ogre::FrameListener
+	{
+		public:
+			virtual bool frameStarted(const Ogre::FrameEvent &evt);
+	};
+}
