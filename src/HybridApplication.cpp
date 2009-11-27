@@ -56,6 +56,7 @@ void HybridApplication::chooseSceneManager()
 
 void HybridApplication::createScene()
 {
+	chooseSceneManager();
 	Camera *cam = sceneManager->createCamera("Camera");
 	Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
 }
