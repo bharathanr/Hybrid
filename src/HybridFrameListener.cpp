@@ -2,8 +2,8 @@
 
 namespace HybridRenderer
 {
-	void FrameListener::frameStarted(const Ogre::FrameEvent& evt)
+	bool FrameListener::frameStarted(const Ogre::FrameEvent& evt)
 	{
-
+		return true;
 	}
 }

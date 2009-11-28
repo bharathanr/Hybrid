@@ -1,7 +1,7 @@
 #include"OgreStringConverter.h"
 
 #include "HybridInputListener.h"
-#include "HybridStateManager.h"
+
 
 namespace HybridRenderer
 {
