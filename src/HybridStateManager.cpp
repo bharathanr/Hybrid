@@ -36,7 +36,7 @@ namespace HybridRenderer
 	// for the sake of clarity, I am not using actual thread synchronization 
         // objects to serialize access to this resource. You would want to protect
         // this block with a mutex or critical section, etc.
-        bool Simulation::lockState() 
+        bool StateManager::lockState() 
         {
 	        if (m_locked == false) 
 	        {
@@ -47,7 +47,7 @@ namespace HybridRenderer
 		        return false;
         }
 
-        bool Simulation::unlockState() 
+        bool StateManager::unlockState() 
         {
 	        if (m_locked == true) 
 	        {

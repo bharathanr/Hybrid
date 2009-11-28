@@ -7,7 +7,7 @@ LD = g++
 LDFLAGS = $(shell pkg-config --libs $(LIBS))
 
 #The meat!
-SOURCES= RunApplication.cpp HybridApplication.cpp
+SOURCES= RunApplication.cpp HybridApplication.cpp HybridStateManager.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE = RunApplication
 
@@ -19,6 +19,8 @@ $(EXECUTABLE): $(OBJECTS)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
 
 HybridApplication.o: include/HybridApplication.h
+
+HybridStateManager.o: include/HybridStateManager.h
 
 clean:
 	rm -f $(EXECUTABLE) 

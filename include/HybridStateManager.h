@@ -23,8 +23,8 @@ namespace HybridRenderer
 	class StateManager
 	{
 		private:
-			m_state;
-			m_locked;
+			ApplicationState m_state;
+			bool m_locked;
 		public:
 			StateManager();
 			~StateManager();
