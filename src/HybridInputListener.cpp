@@ -62,7 +62,7 @@ namespace HybridRenderer
 	bool InputListener::keyReleased(const OIS::KeyEvent &evt) 
 	{
 		if (evt.key == OIS::KC_ESCAPE)
-			m_simulation->requestStateChange(SHUTDOWN);
+			m_sm->requestStateChange(SHUTDOWN);
 
 		return true;
 	}

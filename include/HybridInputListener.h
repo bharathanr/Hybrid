@@ -3,19 +3,23 @@
 #include "OISMouse.h"
 #include "OISKeyboard.h"
 
+#include "HybridStateManager.h"
+
 namespace HybridRenderer
 {
-	class InputListener: public KeyboardListener, public MouseListener
+	class InputListener: 
+		public OIS::KeyListener, 
+		public OIS::MouseListener
 	{
 	        private:
 			OIS::InputManager *m_ois;
 	        	OIS::Mouse *mMouse;
 	        	OIS::Keyboard *mKeyboard;
 	        	unsigned long m_hWnd;
-	       		StateManager m_sm;	
+	       		StateManager *m_sm;	
                 public:
-	        	InputHandler(StateManager *sim, unsigned long hWnd); 
-        		~InputHandler();
+	        	InputListener(StateManager *sim, unsigned long hWnd); 
+        		~InputListener();
 	
 			void setWindowExtents(int width, int height) ;
 			void capture();

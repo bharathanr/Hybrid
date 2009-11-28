@@ -11,14 +11,14 @@
 
 namespace HybridRenderer
 {
-	typedef enum
+	enum ApplicationState
 	{
 		STARTUP,
 		RASTERIZE,
 		RAY_TRACE,
 		DRAW_COMBINED,
 		SHUTDOWN
-	} ApplicationState;
+	};
 
 	class StateManager
 	{
