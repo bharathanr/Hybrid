@@ -11,8 +11,30 @@
 
 namespace HybridRenderer
 {
+	typedef enum
+	{
+		STARTUP,
+		RASTERIZE,
+		RAY_TRACE,
+		DRAW_COMBINED,
+		SHUTDOWN
+	} ApplicationState;
+
 	class StateManager
 	{
+		private:
+			m_state;
+			m_locked;
+		public:
+			StateManager();
+			~StateManager();
+
+			bool requestStateChange(ApplicationState state);
+			//The next two functions should be useful when 
+			//I multi thread.
+			bool lockState();
+			bool unlockState();
+			ApplicationState getCurrentState();
 	};
 }
 
