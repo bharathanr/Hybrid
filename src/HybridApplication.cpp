@@ -1,4 +1,5 @@
 #include"HybridApplication.h"
+
 namespace HybridRenderer
 {
 	Application::Application()
@@ -110,7 +111,7 @@ namespace HybridRenderer
 	void Application::setupInputSystem()
 	{
 		// set up the input handlers
-		inputListener = new InputHandler(stateManager, hWnd);
+		inputListener = new InputListener(stateManager, hWnd);
 	}
 
 	void Application::startRenderLoop()
@@ -121,7 +122,7 @@ namespace HybridRenderer
 			inputListener->capture();
 			// run the message pump (Eihort)
 			Ogre::WindowEventUtilities::messagePump();
-			ogre->renderOneFrame();
+			mRoot->renderOneFrame();
 		}
 
 	}
