@@ -65,6 +65,18 @@ namespace HybridRenderer
 		vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
 		cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
 				Ogre::Real(vp->getActualHeight()));
+
+		//temp
+		// set its position, direction  
+		cam->setPosition(Ogre::Vector3(0,10,500));
+		cam->lookAt(Ogre::Vector3(0,0,0));
+		                 
+		//I'm adding a statue of liberty model.
+		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
+		Ogre::Entity *libertyStatue = sceneManager->createEntity("Liberty", "Liberty.mesh");
+		Ogre::SceneNode *node1 = \
+			sceneManager->getRootSceneNode()->createChildSceneNode("LibertyNode");
+		node1->attachObject(libertyStatue);
 	}
 
 	void Application::createRayTraceScene()
