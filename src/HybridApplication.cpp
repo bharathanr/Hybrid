@@ -5,6 +5,7 @@ namespace HybridRenderer
 	Application::Application()
 		: mRoot(0)
 	{
+		stateManager = new StateManager();
 	}
 
 	Application::~Application()
@@ -111,6 +112,9 @@ namespace HybridRenderer
 	void Application::setupInputSystem()
 	{
 		// set up the input handlers
+		size_t hWnd = 0;
+		Ogre::RenderWindow* win = mRoot->getAutoCreatedWindow();
+		win->getCustomAttribute("WINDOW", &hWnd);
 		inputListener = new InputListener(stateManager, hWnd);
 	}
 

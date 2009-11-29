@@ -4,6 +4,7 @@ namespace HybridRenderer
 {
 	StateManager::StateManager()
 	{
+		m_state = STARTUP;
 	}
 
 	StateManager::~StateManager()
@@ -57,5 +58,10 @@ namespace HybridRenderer
 	        else
 		        return false;
         }
+
+	ApplicationState StateManager::getCurrentState()
+	{
+		return m_state;
+	}
 
 }

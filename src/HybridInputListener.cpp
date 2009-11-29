@@ -37,7 +37,7 @@ namespace HybridRenderer
         	OIS::InputManager::destroyInputSystem(m_ois);
         }
 	
-	void InputiListener::capture() 
+	void InputListener::capture() 
 	{
 		mMouse->capture();
 		mKeyboard->capture();
