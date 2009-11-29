@@ -1,3 +1,6 @@
+#ifndef HYBRID_FRAME_LISTENER_H
+#define HYBRID_FRAME_LISTENER_H
+
 #include<Ogre.h>
 
 namespace HybridRenderer
@@ -8,3 +11,5 @@ namespace HybridRenderer
 			virtual bool frameStarted(const Ogre::FrameEvent &evt);
 	};
 }
+
+#endif

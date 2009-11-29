@@ -107,9 +107,22 @@ namespace HybridRenderer
 		Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	}
 
+	void Application::setupInputSystem()
+	{
+		// set up the input handlers
+		inputListener = new InputHandler(stateManager, hWnd);
+	}
+
 	void Application::startRenderLoop()
 	{
-		//Improve this later
-		mRoot->startRendering();
+
+		while (stateManager->getCurrentState() != SHUTDOWN) 
+		{
+			inputListener->capture();
+			// run the message pump (Eihort)
+			Ogre::WindowEventUtilities::messagePump();
+			ogre->renderOneFrame();
+		}
+
 	}
 }	

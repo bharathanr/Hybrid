@@ -3,13 +3,20 @@
  * This is the class that sets up the Ogre application and the ray trace system.
  */
 
+#ifndef HYBRID_APPLICATION_H
+#define HYBRID_APPLICATION_H
+
 #include<Ogre.h>
 
-/*
- * Class Application
- */
+#include "HybridFrameListener.h"
+#include "HybridStateManager.h"
+#include "HybridInputListener.h"
+
 namespace HybridRenderer
 {
+	/*
+	 * Class Application
+	 */
 	class Application
 	{
 		public:
@@ -19,7 +26,9 @@ namespace HybridRenderer
 		protected:
 			Ogre::Root *mRoot;
 			Ogre::SceneManager *sceneManager;
-		
+			StateManager *stateManager;
+			InputListener *inputListener;
+
 			void initialiseOgre();
 			virtual void initialiseResourcePaths();
 			virtual void initialiseResources();
@@ -35,3 +44,6 @@ namespace HybridRenderer
 
 	};
 }
+
+#endif
+

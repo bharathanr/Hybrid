@@ -1,3 +1,6 @@
+#ifndef HYBRID_INPUT_LISTENER_H
+#define HYBRID_INPUT_LISTENER_H
+
 #include "OISEvents.h"
 #include "OISInputManager.h"
 #include "OISMouse.h"
@@ -35,3 +38,5 @@ namespace HybridRenderer
 
 	};
 }
+
+#endif

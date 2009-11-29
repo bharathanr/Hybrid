@@ -9,6 +9,9 @@
  * 5. SHUTDOWN
  */
 
+#ifndef HYBRID_STATE_MANAGER_H
+#define HYBRID_STATE_MANAGER_H
+
 namespace HybridRenderer
 {
 	enum ApplicationState
@@ -38,3 +41,4 @@ namespace HybridRenderer
 	};
 }
 
+#endif
