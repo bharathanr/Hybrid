@@ -35,7 +35,9 @@ namespace HybridRenderer
 		createScene();
 		//6.Set the default no. of mipmaps and initialise resources as needed.
 		initialiseResources();
-		//7.Keep looping until exit.
+		//7.Set up OIS
+		setupInputSystem();
+		//8.Keep looping until exit.
 		startRenderLoop();
 		return true;
 	}		
@@ -113,7 +115,7 @@ namespace HybridRenderer
 	{
 		// set up the input handlers
 		size_t hWnd = 0;
-		Ogre::RenderWindow* win = mRoot->getAutoCreatedWindow();
+		Ogre::RenderWindow *win = mRoot->getAutoCreatedWindow();
 		win->getCustomAttribute("WINDOW", &hWnd);
 		inputListener = new InputListener(stateManager, hWnd);
 	}
