@@ -4,7 +4,7 @@ namespace HybridRenderer
 {
 	StateManager::StateManager()
 	{
-		m_state = STARTUP;
+		state = STARTUP;
 	}
 
 	StateManager::~StateManager()
@@ -13,22 +13,22 @@ namespace HybridRenderer
 	
 	bool StateManager::requestStateChange(ApplicationState newState)
 	{
-		if(m_state == STARTUP)
+		if(state == STARTUP)
 		{
-			m_locked = false;
-			m_state = newState;
+			locked = false;
+			state = newState;
 			return true;
 		}
 
-		else if(m_state == SHUTDOWN)
+		else if(state == SHUTDOWN)
 		{
 			return false;
 		}
 
-		else if ((m_state == RASTERIZE) || (m_state == RAY_TRACE ) || \
-			(m_state == DRAW_COMBINED))
+		else if ((state == RASTERIZE) || (state == RAY_TRACE ) || \
+			(state == DRAW_COMBINED))
 		{
-			m_state = newState;
+			state = newState;
 			return true;
 		}
 
@@ -39,9 +39,9 @@ namespace HybridRenderer
         // this block with a mutex or critical section, etc.
         bool StateManager::lockState() 
         {
-	        if (m_locked == false) 
+	        if (locked == false) 
 	        {
-        		m_locked = true;
+        		locked = true;
         		return true;
 	        }
 	        else
@@ -50,9 +50,9 @@ namespace HybridRenderer
 
         bool StateManager::unlockState() 
         {
-	        if (m_locked == true) 
+	        if (locked == true) 
 	        {
-		        m_locked = false;
+		        locked = false;
 		        return true;
 	        }
 	        else
@@ -61,7 +61,7 @@ namespace HybridRenderer
 
 	ApplicationState StateManager::getCurrentState()
 	{
-		return m_state;
+		return state;
 	}
 
 }

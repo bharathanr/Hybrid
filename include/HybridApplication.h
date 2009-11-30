@@ -24,7 +24,7 @@ namespace HybridRenderer
 			~Application();
 			bool go();	//Start the application
 		protected:
-			Ogre::Root *mRoot;
+			Ogre::Root *root;
 			Ogre::SceneManager *sceneManager;
 			StateManager *stateManager;
 			InputListener *inputListener;

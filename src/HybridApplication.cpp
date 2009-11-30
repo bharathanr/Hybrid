@@ -3,7 +3,7 @@
 namespace HybridRenderer
 {
 	Application::Application()
-		: mRoot(0)
+		: root(0)
 	{
 		stateManager = new StateManager();
 	}
@@ -11,12 +11,12 @@ namespace HybridRenderer
 	Application::~Application()
 	{
 		//Delete the Ogre root.
-		delete mRoot;
+		delete root;
 	}	
 
 	void Application::initialiseOgre()
 	{
-		mRoot = new Ogre::Root();
+		root = new Ogre::Root();
 	}
 
 	bool Application::go()
@@ -29,7 +29,7 @@ namespace HybridRenderer
 		//Uses the config dialog and ogre.cfg restoration for now.
 		if(!setupRenderSystem())
 			return false;
-		//4.Create the render window using mRoot->initialise
+		//4.Create the render window using root->initialise
 		createRenderWindow();
 		//5.Set the default no. of mipmaps and initialise resources as needed.
 		//This step needs a RenderWindow to be created first.
@@ -45,7 +45,7 @@ namespace HybridRenderer
 
 	bool Application::setupRenderSystem()
 	{
-		if (!mRoot->restoreConfig() && !mRoot->showConfigDialog())
+		if (!root->restoreConfig() && !root->showConfigDialog())
 			return false;
 		//This else is for intent more than anything else.
 		else
@@ -54,7 +54,7 @@ namespace HybridRenderer
 
 	void Application::chooseSceneManager()
 	{
-        	sceneManager = mRoot->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
+        	sceneManager = root->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
 	}	
 
 
@@ -62,7 +62,7 @@ namespace HybridRenderer
 	{
 		chooseSceneManager();
 		Ogre::Camera *cam = sceneManager->createCamera("Camera");
-		Ogre::Viewport *vp = mRoot->getAutoCreatedWindow()->addViewport(cam);
+		Ogre::Viewport *vp = root->getAutoCreatedWindow()->addViewport(cam);
 		vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
 		cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
 				Ogre::Real(vp->getActualHeight()));
@@ -88,7 +88,7 @@ namespace HybridRenderer
 
 	void Application::createRenderWindow()
 	{
-		mRoot->initialise(true, "Tutorial Render Window");
+		root->initialise(true, "Tutorial Render Window");
 	}
 
 	void Application::initialiseResourcePaths()
@@ -130,7 +130,7 @@ namespace HybridRenderer
 	{
 		// set up the input handlers
 		size_t hWnd = 0;
-		Ogre::RenderWindow *win = mRoot->getAutoCreatedWindow();
+		Ogre::RenderWindow *win = root->getAutoCreatedWindow();
 		win->getCustomAttribute("WINDOW", &hWnd);
 		inputListener = new InputListener(stateManager, hWnd);
 	}
@@ -143,7 +143,7 @@ namespace HybridRenderer
 			inputListener->capture();
 			// run the message pump (Eihort)
 			Ogre::WindowEventUtilities::messagePump();
-			mRoot->renderOneFrame();
+			root->renderOneFrame();
 		}
 
 	}

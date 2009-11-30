@@ -5,7 +5,7 @@
 
 namespace HybridRenderer
 {
-        InputListener::InputListener(StateManager *sm, unsigned long hWnd)  
+        InputListener::InputListener(StateManager *sourceStateManager, unsigned long hWnd)  
 	{
 
 		//Set up the OIS parameter list
@@ -15,39 +15,39 @@ namespace HybridRenderer
 	 
 		//Keep a hold of the window handle
 		//Is this really necessary? Perhaps not.
-	 	m_hWnd = hWnd;
+	 	hWnd = hWnd;
 		//Create the input system and use it to create a mouse and keyboard.
 		//Hold on to these created objects
-		m_ois = OIS::InputManager::createInputSystem(pl);
-		m_mouse = static_cast<OIS::Mouse*>(m_ois->createInputObject(OIS::OISMouse, true));
-		m_keyboard = static_cast<OIS::Keyboard*>(m_ois->createInputObject(OIS::OISKeyboard, true));
+		ois = OIS::InputManager::createInputSystem(pl);
+		mouse = static_cast<OIS::Mouse*>(ois->createInputObject(OIS::OISMouse, true));
+		keyboard = static_cast<OIS::Keyboard*>(ois->createInputObject(OIS::OISKeyboard, true));
 		//Register to recieve mouse events and keyboard events.
-		m_mouse->setEventCallback(this);
-		m_keyboard->setEventCallback(this);
+		mouse->setEventCallback(this);
+		keyboard->setEventCallback(this);
 
-		m_sm = sm;
+		stateManager = sourceStateManager;
 
 		//Variables for camera movement.
 
 		// set the rotation and move speed
-		m_rotate = 0.13;
-		m_move = 250;
+		rotate = 0.13;
+		move = 250;
 
 	}
 
         InputListener::~InputListener() 
         {
-	        if (m_mouse)
-		        m_ois->destroyInputObject(m_mouse);
-	        if (m_keyboard)
-		        m_ois->destroyInputObject(m_keyboard);
-        	OIS::InputManager::destroyInputSystem(m_ois);
+	        if (mouse)
+		        ois->destroyInputObject(mouse);
+	        if (keyboard)
+		        ois->destroyInputObject(keyboard);
+        	OIS::InputManager::destroyInputSystem(ois);
         }
 	
 	void InputListener::capture() 
 	{
-		m_mouse->capture();
-		m_keyboard->capture();
+		mouse->capture();
+		keyboard->capture();
 	}
 
 	// MouseListener
@@ -75,7 +75,7 @@ namespace HybridRenderer
 	bool InputListener::keyReleased(const OIS::KeyEvent &evt) 
 	{
 		if (evt.key == OIS::KC_ESCAPE)
-			m_sm->requestStateChange(SHUTDOWN);
+			stateManager->requestStateChange(SHUTDOWN);
 
 		return true;
 	}
