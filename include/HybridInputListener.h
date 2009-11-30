@@ -16,10 +16,14 @@ namespace HybridRenderer
 	{
 	        private:
 			OIS::InputManager *m_ois;
-	        	OIS::Mouse *mMouse;
-	        	OIS::Keyboard *mKeyboard;
+	        	OIS::Mouse *m_mouse;
+	        	OIS::Keyboard *m_keyboard;
 	        	unsigned long m_hWnd;
-	       		StateManager *m_sm;	
+	       		StateManager *m_sm;
+			//Variables for camera movement in rasterise mode
+			Ogre::Real m_rotate;
+			Ogre::Real m_move;
+			Ogre::Vector3 *m_direction;		
                 public:
 	        	InputListener(StateManager *sim, unsigned long hWnd); 
         		~InputListener();

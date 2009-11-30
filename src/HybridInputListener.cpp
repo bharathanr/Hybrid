@@ -19,28 +19,35 @@ namespace HybridRenderer
 		//Create the input system and use it to create a mouse and keyboard.
 		//Hold on to these created objects
 		m_ois = OIS::InputManager::createInputSystem(pl);
-		mMouse = static_cast<OIS::Mouse*>(m_ois->createInputObject(OIS::OISMouse, true));
-		mKeyboard = static_cast<OIS::Keyboard*>(m_ois->createInputObject(OIS::OISKeyboard, true));
+		m_mouse = static_cast<OIS::Mouse*>(m_ois->createInputObject(OIS::OISMouse, true));
+		m_keyboard = static_cast<OIS::Keyboard*>(m_ois->createInputObject(OIS::OISKeyboard, true));
 		//Register to recieve mouse events and keyboard events.
-		mMouse->setEventCallback(this);
-		mKeyboard->setEventCallback(this);
+		m_mouse->setEventCallback(this);
+		m_keyboard->setEventCallback(this);
 
 		m_sm = sm;
+
+		//Variables for camera movement.
+
+		// set the rotation and move speed
+		m_rotate = 0.13;
+		m_move = 250;
+
 	}
 
         InputListener::~InputListener() 
         {
-	        if (mMouse)
-		        m_ois->destroyInputObject(mMouse);
-	        if (mKeyboard)
-		        m_ois->destroyInputObject(mKeyboard);
+	        if (m_mouse)
+		        m_ois->destroyInputObject(m_mouse);
+	        if (m_keyboard)
+		        m_ois->destroyInputObject(m_keyboard);
         	OIS::InputManager::destroyInputSystem(m_ois);
         }
 	
 	void InputListener::capture() 
 	{
-		mMouse->capture();
-		mKeyboard->capture();
+		m_mouse->capture();
+		m_keyboard->capture();
 	}
 
 	// MouseListener
