@@ -31,10 +31,11 @@ namespace HybridRenderer
 			return false;
 		//4.Create the render window using mRoot->initialise
 		createRenderWindow();
-		//5.Create a scene.
-		createScene();
-		//6.Set the default no. of mipmaps and initialise resources as needed.
+		//5.Set the default no. of mipmaps and initialise resources as needed.
+		//This step needs a RenderWindow to be created first.
 		initialiseResources();
+		//6.Create a scene.
+		createScene();
 		//7.Set up OIS
 		setupInputSystem();
 		//8.Keep looping until exit.
@@ -68,14 +69,16 @@ namespace HybridRenderer
 
 		//temp
 		// set its position, direction  
-		cam->setPosition(Ogre::Vector3(0,10,500));
+		cam->setPosition(Ogre::Vector3(-20,20,150));
 		cam->lookAt(Ogre::Vector3(0,0,0));
 		                 
 		//I'm adding a statue of liberty model.
 		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 		Ogre::Entity *libertyStatue = sceneManager->createEntity("Liberty", "Liberty.mesh");
+		//libertyStatue->setMaterialName("Ogre/Skin");
 		Ogre::SceneNode *node1 = \
 			sceneManager->getRootSceneNode()->createChildSceneNode("LibertyNode");
+		//node1->yaw(Ogre::Degree(-180));
 		node1->attachObject(libertyStatue);
 	}
 
