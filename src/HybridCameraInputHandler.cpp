@@ -9,6 +9,7 @@ namespace HybridRenderer
 	{
 
 		//Set up the OIS parameter list
+		//
 		OIS::ParamList pl;
 		//Just the window handle will do
 		pl.insert(OIS::ParamList::value_type("WINDOW", Ogre::StringConverter::toString(hWnd)));
@@ -32,6 +33,8 @@ namespace HybridRenderer
 		// set the rotation and movementStep speed
 		rotationStep = 0.13;
 		movementStep = 250;
+
+		cameraMoveDirection = Ogre::Vector3::ZERO;
 
 	}
 

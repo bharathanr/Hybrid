@@ -1,14 +1,10 @@
 #ifndef HYBRID_INPUT_LISTENER_H
 #define HYBRID_INPUT_LISTENER_H
 
-#include <Ogre.h>
-
 #include "OISEvents.h"
 #include "OISInputManager.h"
 #include "OISMouse.h"
 #include "OISKeyboard.h"
-
-#include "HybridStateManager.h"
 
 namespace HybridRenderer
 {
@@ -21,11 +17,6 @@ namespace HybridRenderer
 	        	OIS::Mouse *mouse;
 	        	OIS::Keyboard *keyboard;
 	        	unsigned long hWnd;
-	       		StateManager *stateManager;
-			//Variables for camera movement in rasterise mode
-			Ogre::Real rotationStep;
-			Ogre::Real movementStep;
-			Ogre::Vector3 cameraMoveDirection;		
                 public:
 	        	InputListener(StateManager *sim, unsigned long hWnd); 
         		~InputListener();
