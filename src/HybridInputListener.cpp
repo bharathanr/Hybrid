@@ -5,7 +5,7 @@
 
 namespace HybridRenderer
 {
-        InputListener::InputListener(StateManager *sourceStateManager, unsigned long hWnd)  
+        InputListener::InputListener(size_t hWnd)  
 	{
 
 		//Set up the OIS parameter list

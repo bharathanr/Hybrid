@@ -1,6 +1,8 @@
 #ifndef HYBRID_INPUT_LISTENER_H
 #define HYBRID_INPUT_LISTENER_H
 
+#include<vector>
+
 #include "OISEvents.h"
 #include "OISInputManager.h"
 #include "OISMouse.h"
@@ -16,9 +18,11 @@ namespace HybridRenderer
 			OIS::InputManager *ois;
 	        	OIS::Mouse *mouse;
 	        	OIS::Keyboard *keyboard;
-	        	unsigned long hWnd;
+	        	size_t hWnd;
+			std::vector<int> x;
+
                 public:
-	        	InputListener(StateManager *sim, unsigned long hWnd); 
+	        	InputListener(size_t hWnd); 
         		~InputListener();
 	
 			void setWindowExtents(int width, int height) ;
