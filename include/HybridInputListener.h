@@ -24,8 +24,8 @@ namespace HybridRenderer
                 public:
 	        	InputListener(size_t hWnd); 
         		~InputListener();
-	
-			void setWindowExtents(int width, int height) ;
+			
+			//Captures the keyboard and mouse state!	
 			void capture();
 
 			// MouseListener
