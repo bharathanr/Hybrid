@@ -143,6 +143,8 @@ namespace HybridRenderer
 	        camInputHandler = new CameraInputHandler();
 		smInputHandler = new StateManagerInputHandler(stateManager);	
 		//Now register InputHandlers with the InputListener.
+		inputListener->registerInputHandler(camInputHandler);
+		inputListener->registerInputHandler(smInputHandler);
 	}
 
 	void Application::startRenderLoop()

@@ -70,10 +70,7 @@ namespace HybridRenderer
 			case OIS::KC_Q:
 			    cameraMoveDirection.y = movementStep;
 			    break; 
-
-			case OIS::KC_ESCAPE:
-				stateManager->requestStateChange(SHUTDOWN);
-				break;
+			
 			default:
 				break;
 		}

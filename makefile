@@ -18,13 +18,15 @@ all: $(SOURCES) $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS)
 	$(LD) $(LDFLAGS) $(OBJECTS) -o $(EXECUTABLE)
 
-HybridApplication.o: include/HybridApplication.h
+HybridApplication.o: include/HybridApplication.h 
 
 HybridStateManager.o: include/HybridStateManager.h
 
-HybridInputListener.o: include/HybridInputListener.h include/HybridStateManager.h
+HybridInputListener.o: include/HybridInputListener.h 
 
 HybridFrameListener.o: include/HybridFrameListener.h
+
+HybridStateManagerInputHandler.o: include/HybridStateManagerInputHandler.h
 
 clean:
 	rm -f $(EXECUTABLE) 

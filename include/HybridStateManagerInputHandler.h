@@ -1,6 +1,8 @@
 #ifndef HYBRID_STATE_MANAGER_INPUT_HANDLER_H
 #define HYBRID_STATE_MANAGER_INPUT_HANDLER_H
 
+#include"OISEvents.h"
+
 #include"HybridInputHandler.h"
 
 namespace HybridRenderer
@@ -14,6 +16,7 @@ namespace HybridRenderer
 		public:
 			StateManagerInputHandler(StateManager *stMgr);
 			~StateManagerInputHandler();
+			bool keyPressed(const OIS::KeyEvent&);
 	};
 }
 
