@@ -8,12 +8,13 @@
 
 #include<Ogre.h>
 
-#include "HybridFrameListener.h"
-#include "HybridStateManager.h"
-#include "HybridInputListener.h"
-
 namespace HybridRenderer
 {
+	//Forward Declarations
+	class FrameListener;
+	class StateManager;
+	class InputListener;
+	
 	/*
 	 * Class Application
 	 */

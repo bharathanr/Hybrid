@@ -1,4 +1,7 @@
-#include"HybridApplication.h"
+#include "HybridApplication.h"
+#include "HybridStateManager.h"
+#include "HybridInputListener.h"
+#include "HybridFrameListener.h"
 
 namespace HybridRenderer
 {
@@ -132,7 +135,7 @@ namespace HybridRenderer
 		size_t hWnd = 0;
 		Ogre::RenderWindow *win = root->getAutoCreatedWindow();
 		win->getCustomAttribute("WINDOW", &hWnd);
-		inputListener = new InputListener(stateManager, hWnd);
+		inputListener = new InputListener(hWnd);
 	}
 
 	void Application::startRenderLoop()
