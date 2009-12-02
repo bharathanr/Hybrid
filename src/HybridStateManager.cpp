@@ -26,7 +26,8 @@ namespace HybridRenderer
 		}
 
 		else if ((state == RASTERIZE) || (state == RAY_TRACE ) || \
-			(state == DRAW_COMBINED))
+			(state == DRAW_COMBINED) && (newState != STARTUP) &&\
+		       	(newState != state))
 		{
 			state = newState;
 			return true;

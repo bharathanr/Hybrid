@@ -23,6 +23,13 @@ namespace HybridRenderer
 	// MouseListener
 	bool CameraInputHandler::mouseMoved(const OIS::MouseEvent &evt) 
 	{
+		if (e.state.buttonDown(OIS::MB_Right))
+		{
+			//mCamNode->yaw(Degree(-mRotate * e.state.X.rel), Node::TS_WORLD);
+			//mCamNode->pitch(Degree(-mRotate * e.state.Y.rel), Node::TS_LOCAL);
+		}
+
+		
 		return true;
 	}
 

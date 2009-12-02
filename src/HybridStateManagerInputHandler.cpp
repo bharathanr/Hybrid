@@ -21,5 +21,11 @@ namespace HybridRenderer
 	{
 		if(evt.key == OIS::KC_ESCAPE)
 			stateManager->requestStateChange(SHUTDOWN);
+		else if(evt.key == OIS::KC_R)
+			stateManager->requestStateChange(RAY_TRACE);
+		else if(evt.key == OIS::KC_O)
+			stateManager->requestStateChange(RASTERIZE);
+		else if(evt.key == OIS::KC_C)
+			stateManager->requestStateChange(DRAW_COMBINED);
 	}		
 }
