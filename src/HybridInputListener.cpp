@@ -36,9 +36,9 @@ namespace HybridRenderer
         	OIS::InputManager::destroyInputSystem(ois);
         }
 
-	InputListener::registerInputHandler(InputHandler *ih)
+	void InputListener::registerInputHandler(InputHandler *ih)
 	{
-		registeredEvents.push_back(*`ih);
+		registeredHandlers.push_back(ih);
 	}
 	
 	void InputListener::capture() 
@@ -54,14 +54,14 @@ namespace HybridRenderer
 		//Is it possible to do better without boost.signals?
 	        
 		//Get an iterator over the registered input handlers
-		std::vector<InputHandler>::iterator inputHandlerIterator;
+		std::vector<InputHandler*>::iterator inputHandlerIterator;
 		//Use it to loop over registered handlers
 		for(inputHandlerIterator = registeredHandlers.begin();\
 			inputHandlerIterator != registeredHandlers.end();\
 			inputHandlerIterator++)
 		{
 			//Call the corresponding InputHandler method
-			inputHandlerIterator->mouseMoved(evt);
+			(*inputHandlerIterator)->mouseMoved(evt);
 		}	
 		return true;
 	}
@@ -69,14 +69,14 @@ namespace HybridRenderer
 	bool InputListener::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
 	{
 		//Get an iterator over the registered input handlers
-		std::vector<InputHandler>::iterator inputHandlerIterator;
+		std::vector<InputHandler*>::iterator inputHandlerIterator;
 		//Use it to loop over registered handlers
 		for(inputHandlerIterator = registeredHandlers.begin();\
 			inputHandlerIterator != registeredHandlers.end();\
 			inputHandlerIterator++)
 		{
 			//Call the corresponding InputHandler method
-			inputHandlerIterator->mousePressed(evt, btn);
+			(*inputHandlerIterator)->mousePressed(evt, btn);
 		}	
 		return true;
 	}
@@ -84,14 +84,14 @@ namespace HybridRenderer
 	bool InputListener::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
 	{
 		//Get an iterator over the registered input handlers
-		std::vector<InputHandler>::iterator inputHandlerIterator;
+		std::vector<InputHandler*>::iterator inputHandlerIterator;
 		//Use it to loop over registered handlers
 		for(inputHandlerIterator = registeredHandlers.begin();\
 			inputHandlerIterator != registeredHandlers.end();\
 			inputHandlerIterator++)
 		{
 			//Call the corresponding InputHandler method
-			inputHandlerIterator->mousePressed(evt, btn);
+			(*inputHandlerIterator)->mouseReleased(evt, btn);
 		}	
 		return true;
 		return true;
@@ -101,14 +101,14 @@ namespace HybridRenderer
 	bool InputListener::keyPressed(const OIS::KeyEvent &evt) 
 	{
 		//Get an iterator over the registered input handlers
-		std::vector<InputHandler>::iterator inputHandlerIterator;
+		std::vector<InputHandler*>::iterator inputHandlerIterator;
 		//Use it to loop over registered handlers
 		for(inputHandlerIterator = registeredHandlers.begin();\
 			inputHandlerIterator != registeredHandlers.end();\
 			inputHandlerIterator++)
 		{
 			//Call the corresponding InputHandler method
-			inputHandlerIterator->keyPressed(evt);
+			(*inputHandlerIterator)->keyPressed(evt);
 		}	
 		return true;
 		return true;
@@ -116,14 +116,14 @@ namespace HybridRenderer
 	bool InputListener::keyReleased(const OIS::KeyEvent &evt) 
 	{	
 		//Get an iterator over the registered input handlers
-		std::vector<InputHandler>::iterator inputHandlerIterator;
+		std::vector<InputHandler*>::iterator inputHandlerIterator;
 		//Use it to loop over registered handlers
 		for(inputHandlerIterator = registeredHandlers.begin();\
 			inputHandlerIterator != registeredHandlers.end();\
 			inputHandlerIterator++)
 		{
 			//Call the corresponding InputHandler method
-			inputHandlerIterator->keyPressed(evt);
+			(*inputHandlerIterator)->keyReleased(evt);
 		}	
 		return true;
 	}

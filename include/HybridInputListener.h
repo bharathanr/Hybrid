@@ -21,7 +21,7 @@ namespace HybridRenderer
 	        	OIS::Mouse *mouse;
 	        	OIS::Keyboard *keyboard;
 	        	size_t hWnd;
-			std::vector<InputHandler> registeredHandlers;
+			std::vector<InputHandler*> registeredHandlers;
 
                 public:
 	        	InputListener(size_t hWnd); 

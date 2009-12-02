@@ -15,32 +15,33 @@ namespace HybridRenderer
 
 	class InputHandler
 	{
-		// Functions to deal with mouse input.
-		virtual bool mouseMoved(const OIS::MouseEvent &evt) 
-		{
-			return true;
-		}
+		public:
+			// Functions to deal with mouse input.
+			virtual bool mouseMoved(const OIS::MouseEvent &evt) 
+			{
+				return true;
+			}
 		
-		virtual bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID);
-		{
-			return true;
-		}
+			virtual bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID)
+			{
+				return true;
+			}
 		
-		virtual bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID);
-		{
-			return true;
-		}
+			virtual bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID)
+			{
+				return true;
+			}	
 
-		// Functions to deal with keyboard input.
-		virtual bool keyPressed(const OIS::KeyEvent &evt);
-		{
-			return true;
-		}
-		
-		virtual bool keyReleased(const OIS::KeyEvent &evt);
-		{
-			return true;
-		}
+			// Functions to deal with keyboard input.
+			virtual bool keyPressed(const OIS::KeyEvent &evt)
+			{
+				return true;
+			}	
+			
+			virtual bool keyReleased(const OIS::KeyEvent &evt)
+			{
+				return true;
+			}
 	};
 }
 
