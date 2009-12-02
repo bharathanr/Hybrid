@@ -8,6 +8,8 @@
 #include "OISMouse.h"
 #include "OISKeyboard.h"
 
+#include"HybridInputHandler.h"
+
 namespace HybridRenderer
 {
 	class InputListener: 
@@ -19,7 +21,7 @@ namespace HybridRenderer
 	        	OIS::Mouse *mouse;
 	        	OIS::Keyboard *keyboard;
 	        	size_t hWnd;
-			std::vector<int> x;
+			std::vector<InputHandler> x;
 
                 public:
 	        	InputListener(size_t hWnd); 

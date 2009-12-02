@@ -1,13 +1,10 @@
-#include"OgreStringConverter.h"
-
-#include "HybridInputListener.h"
+#include "HybridCameraInputHandler.h"
 
 
 namespace HybridRenderer
 {
-        InputListener::InputListener()  
+        CameraInputHandler::CameraInputHandler()  
 	{
-
 		//Variables for camera movementStepment.
 
 		// set the rotation and movementStep speed
@@ -18,29 +15,29 @@ namespace HybridRenderer
 
 	}
 
-        InputListener::~InputListener() 
+        CameraInputHandler::~CameraInputHandler() 
         {
         }
 	
 
 	// MouseListener
-	bool InputListener::mouseMoved(const OIS::MouseEvent &evt) 
+	bool CameraInputHandler::mouseMoved(const OIS::MouseEvent &evt) 
 	{
 		return true;
 	}
 
-	bool InputListener::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
+	bool CameraInputHandler::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
 	{
 		return true;
 	}
 
-	bool InputListener::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
+	bool CameraInputHandler::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
 	{
 		return true;
 	}
 	
 	// KeyListener
-	bool InputListener::keyPressed(const OIS::KeyEvent &evt) 
+	bool CameraInputHandler::keyPressed(const OIS::KeyEvent &evt) 
 	{
 		switch(evt.key)
 		{	
@@ -82,7 +79,7 @@ namespace HybridRenderer
 		}
 		return true;
 	}
-	bool InputListener::keyReleased(const OIS::KeyEvent &evt) 
+	bool CameraInputHandler::keyReleased(const OIS::KeyEvent &evt) 
 	{	
 		switch (evt.key)
 		{

@@ -8,6 +8,8 @@
 #ifndef HYBRID_INPUT_HANDLER_H
 #define HYBRID_INPUT_HANDLER_H
 
+#include"OISEvents.h"
+
 namespace HybridRenderer
 {
 
