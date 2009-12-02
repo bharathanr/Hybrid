@@ -14,6 +14,8 @@ namespace HybridRenderer
 	class FrameListener;
 	class StateManager;
 	class InputListener;
+	class StateManagerInputHandler;
+	class CameraInputHandler;
 	
 	/*
 	 * Class Application
@@ -29,6 +31,9 @@ namespace HybridRenderer
 			Ogre::SceneManager *sceneManager;
 			StateManager *stateManager;
 			InputListener *inputListener;
+			//Are the following pointers necessary - Reconsider.
+			CameraInputHandler *camInputHandler;
+			StateManagerInputHandler *smInputHandler;
 
 			void initialiseOgre();
 			virtual void initialiseResourcePaths();

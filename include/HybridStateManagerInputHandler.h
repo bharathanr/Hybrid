@@ -12,7 +12,7 @@ namespace HybridRenderer
 		private:
 			StateManager *stateManager;
 		public:
-			StateManagerInputHandler::StateManagerInputHandler(StateManager *stMgr);
+			StateManagerInputHandler(StateManager *stMgr);
 			~StateManagerInputHandler();
 	};
 }

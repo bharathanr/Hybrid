@@ -7,7 +7,7 @@ LD = g++
 LDFLAGS = $(shell pkg-config --libs $(LIBS))
 
 #The meat!
-SOURCES= RunApplication.cpp HybridApplication.cpp HybridStateManager.cpp HybridInputListener.cpp HybridFrameListener.cpp
+SOURCES= RunApplication.cpp HybridApplication.cpp HybridStateManager.cpp HybridInputListener.cpp HybridFrameListener.cpp HybridStateManagerInputHandler.cpp HybridCameraInputHandler.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE = RunApplication
 

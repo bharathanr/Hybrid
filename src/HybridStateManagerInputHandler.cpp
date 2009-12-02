@@ -17,7 +17,7 @@ namespace HybridRenderer
 		//- think about it.
         }
 
-	bool KeyPressed(const OIS::KeyEvent& evt)
+	bool StateManagerInputHandler::keyPressed(const OIS::KeyEvent& evt)
 	{
 		if(evt.key == OIS::KC_ESCAPE)
 			stateManager->requestStateChange(SHUTDOWN);

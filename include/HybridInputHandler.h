@@ -9,9 +9,18 @@
 #define HYBRID_INPUT_HANDLER_H
 
 #include"OISEvents.h"
+#include"OISMouse.h"
+#include"OISKeyboard.h"
 
 namespace HybridRenderer
 {
+
+	/*
+	 * Another option is to have separate KeyListener and
+	 * MouseListener interfaces. If I were to do that, I would use 
+	 * OIS::KeyListener and OIS::MouseListener and change input handler to have 
+	 * two lists- registeredKeyboardHandlers and registeredMouseHandlers
+	 */
 
 	class InputHandler
 	{

@@ -1,7 +1,9 @@
-#include "HybridApplication.h"
-#include "HybridStateManager.h"
-#include "HybridInputListener.h"
-#include "HybridFrameListener.h"
+#include"HybridApplication.h"
+#include"HybridStateManager.h"
+#include"HybridInputListener.h"
+#include"HybridFrameListener.h"
+#include"HybridCameraInputHandler.h"
+#include"HybridStateManagerInputHandler.h" 
 
 namespace HybridRenderer
 {
@@ -131,11 +133,16 @@ namespace HybridRenderer
 
 	void Application::setupInputSystem()
 	{
-		// set up the input handlers
+		//Set up the InputListener. This is mainly OIS stuff.
 		size_t hWnd = 0;
 		Ogre::RenderWindow *win = root->getAutoCreatedWindow();
 		win->getCustomAttribute("WINDOW", &hWnd);
 		inputListener = new InputListener(hWnd);
+		
+		//Create InputHandlers.
+	        camInputHandler = new CameraInputHandler();
+		smInputHandler = new StateManagerInputHandler(stateManager);	
+		//Now register InputHandlers with the InputListener.
 	}
 
 	void Application::startRenderLoop()
