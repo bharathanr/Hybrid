@@ -5,9 +5,17 @@
 
 namespace HybridRenderer
 {
+	class CameraInputHandler;
+
 	class FrameListener: public Ogre::FrameListener
 	{
+		private:
+			Ogre::SceneManager *sceneManager;
+			Ogre::SceneNode *camNode;
+			CameraInputHandler *camInputHandler;
 		public:
+			FrameListener(Ogre::SceneManager*, Ogre::SceneNode*);
+			~FrameListener();
 			virtual bool frameStarted(const Ogre::FrameEvent &evt);
 	};
 }

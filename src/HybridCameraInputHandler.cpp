@@ -1,6 +1,5 @@
 #include "HybridCameraInputHandler.h"
 
-
 namespace HybridRenderer
 {
         CameraInputHandler::CameraInputHandler()  
@@ -12,21 +11,27 @@ namespace HybridRenderer
 		movementStep = 250;
 
 		cameraMoveDirection = Ogre::Vector3::ZERO;
-
+		cameraRotation = Ogre::Quaternion::IDENTITY;
 	}
 
         CameraInputHandler::~CameraInputHandler() 
         {
         }
 	
-
+	//Feedback to frame listener
+	std::pair<Ogre::Vector3, Ogre::Quaternion> CameraInputHandler::getTransformations()
+	{
+		return new std::pair<Ogre::Vector3*, Ogre::Quaternion*>(cameraMoveDirection, cameraRotation);
+	}
 	// MouseListener
 	bool CameraInputHandler::mouseMoved(const OIS::MouseEvent &evt) 
 	{
 		if (e.state.buttonDown(OIS::MB_Right))
 		{
-			//mCamNode->yaw(Degree(-mRotate * e.state.X.rel), Node::TS_WORLD);
-			//mCamNode->pitch(Degree(-mRotate * e.state.Y.rel), Node::TS_LOCAL);
+			Ogre::Quaternion yaw(Degree(-mRotate * e.state.X.rel), Vector3::UNIT_Z);
+			Ogre::Quaternion pitch(Degree(-mRotate * e.state.Y.rel), Node::TS_LOCAL);
+			//This is not a commutative multiplication...
+			cameraRotation = pitch * yaw;
 		}
 
 		
