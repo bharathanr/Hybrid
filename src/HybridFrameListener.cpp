@@ -1,5 +1,7 @@
+#include <utility>
+
 #include "HybridFrameListener.h"
-#include<pair>
+#include "HybridCameraInputHandler.h"
 
 namespace HybridRenderer
 {
@@ -9,7 +11,7 @@ namespace HybridRenderer
 			CameraInputHandler* cih)
 	{
 		sceneManager = sceneMgr;
-		cameNode = camNd;
+		camNode = camNd;
 		camInputHandler = cih;
 	}
 
@@ -20,8 +22,8 @@ namespace HybridRenderer
 
 	bool FrameListener::frameStarted(const Ogre::FrameEvent& evt)
 	{
-		result =  camInputHandler.getTransformations();
-		camMove = result.first;
+		std::pair<Ogre::Vector3, Ogre::Quaternion> result =  camInputHandler->getTransformations();
+		Ogre::Vector3 camMove = result.first;
 		camNode->translate(camMove,Ogre::Node::TS_LOCAL);
 		return true;
 	}

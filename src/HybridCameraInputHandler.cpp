@@ -19,17 +19,17 @@ namespace HybridRenderer
         }
 	
 	//Feedback to frame listener
-	std::pair<Ogre::Vector3, Ogre::Quaternion> CameraInputHandler::getTransformations()
+	std::pair<Ogre::Vector3*, Ogre::Quaternion*>* CameraInputHandler::getTransformations()
 	{
-		return new std::pair<Ogre::Vector3*, Ogre::Quaternion*>(cameraMoveDirection, cameraRotation);
+		return new std::pair<Ogre::Vector3*, Ogre::Quaternion*>(&cameraMoveDirection, &cameraRotation);
 	}
 	// MouseListener
 	bool CameraInputHandler::mouseMoved(const OIS::MouseEvent &evt) 
 	{
-		if (e.state.buttonDown(OIS::MB_Right))
+		if (evt.state.buttonDown(OIS::MB_Right))
 		{
-			Ogre::Quaternion yaw(Degree(-mRotate * e.state.X.rel), Vector3::UNIT_Z);
-			Ogre::Quaternion pitch(Degree(-mRotate * e.state.Y.rel), Node::TS_LOCAL);
+			Ogre::Quaternion yaw(Ogre::Degree(-rotationStep * evt.state.X.rel), Ogre::Vector3::UNIT_Z);
+			Ogre::Quaternion pitch(Ogre::Degree(-rotationStep * evt.state.Y.rel),Ogre::Vector3::UNIT_Y);
 			//This is not a commutative multiplication...
 			cameraRotation = pitch * yaw;
 		}

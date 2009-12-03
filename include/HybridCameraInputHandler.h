@@ -1,7 +1,7 @@
 #ifndef HYBRID_CAMERA_INPUT_HANDLER_H
 #define HYBRID_CAMERA_INPUT_HANDLER_H
 
-#include<pair>
+#include<utility>
 
 #include<Ogre.h>
 
@@ -15,11 +15,11 @@ namespace HybridRenderer
 			Ogre::Real movementStep;
 			Ogre::Real rotationStep;
 			Ogre::Vector3 cameraMoveDirection;
-			Ogre::Quaternion cameraRotations;
+			Ogre::Quaternion cameraRotation;
 		public:
 			CameraInputHandler();
 			~CameraInputHandler();
-		        std::pair<Ogre::Vector3, Ogre::Quaternion> CameraInputHandler::getTransformations();
+		        std::pair<Ogre::Vector3*, Ogre::Quaternion*>* getTransformations();
 			// Functions to deal with mouse input.
 			virtual bool mouseMoved(const OIS::MouseEvent &evt); 
 			virtual bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID);

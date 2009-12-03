@@ -14,7 +14,7 @@ namespace HybridRenderer
 			Ogre::SceneNode *camNode;
 			CameraInputHandler *camInputHandler;
 		public:
-			FrameListener(Ogre::SceneManager*, Ogre::SceneNode*);
+			FrameListener(Ogre::SceneManager*, Ogre::SceneNode*, CameraInputHandler*);
 			~FrameListener();
 			virtual bool frameStarted(const Ogre::FrameEvent &evt);
 	};
