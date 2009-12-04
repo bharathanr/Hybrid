@@ -44,7 +44,7 @@ namespace HybridRenderer
 			virtual void createRenderWindow();
 			virtual void createScene();
 			virtual void createRayTraceScene();
-			void createFrameListener();
+			void createFrameListeners();
 			virtual void startRenderLoop();
 			bool initialiseRayTraceSystem();
 

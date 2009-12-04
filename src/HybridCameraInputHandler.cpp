@@ -19,9 +19,11 @@ namespace HybridRenderer
         }
 	
 	//Feedback to frame listener
-	std::pair<Ogre::Vector3*, Ogre::Quaternion*>* CameraInputHandler::getTransformations()
+	std::pair<Ogre::Vector3*, Ogre::Quaternion*> CameraInputHandler::getTransformations()
 	{
-		return new std::pair<Ogre::Vector3*, Ogre::Quaternion*>(&cameraMoveDirection, &cameraRotation);
+		std::pair<Ogre::Vector3*, Ogre::Quaternion*> \
+			A(&cameraMoveDirection, &cameraRotation);
+		return A;
 	}
 	// MouseListener
 	bool CameraInputHandler::mouseMoved(const OIS::MouseEvent &evt) 

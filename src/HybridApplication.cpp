@@ -43,6 +43,8 @@ namespace HybridRenderer
 		createScene();
 		//7.Set up OIS
 		setupInputSystem();
+		//New step
+		createFrameListeners();
 		//8.Keep looping until exit.
 		startRenderLoop();
 		return true;
@@ -62,11 +64,16 @@ namespace HybridRenderer
         	sceneManager = root->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
 	}	
 
+	void Application::createFrameListeners()
+	{
+		FrameListener *listener = new FrameListener(sceneManager);
+		root->addFrameListener(listener);
+	}
 
 	void Application::createScene()
 	{
 		chooseSceneManager();
-		Ogre::Camera *cam = sceneManager->createCamera("Camera");
+		Ogre::Camera *cam = sceneManager->createCamera("CameraNode");
 		Ogre::Viewport *vp = root->getAutoCreatedWindow()->addViewport(cam);
 		vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
 		cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
@@ -74,9 +81,15 @@ namespace HybridRenderer
 
 		//temp
 		// set its position, direction  
-		cam->setPosition(Ogre::Vector3(-20,20,150));
-		cam->lookAt(Ogre::Vector3(0,0,0));
-		                 
+		//cam->setPosition(Ogre::Vector3(-20,20,150));
+		//cam->lookAt(Ogre::Vector3(0,0,0));
+		//Attach it to a scene node
+		Ogre::SceneNode *node = \
+			sceneManager->getRootSceneNode()->createChildSceneNode("CameraNode",
+					Ogre::Vector3(-20, 20, 150));
+		//node->setPosition();
+		//node->lookAt(Ogre::Vector3(0,0,0), Ogre::Node::TS_WORLD);
+		node->attachObject(cam);
 		//I'm adding a statue of liberty model.
 		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 		Ogre::Entity *libertyStatue = sceneManager->createEntity("Liberty", "Liberty.mesh");
