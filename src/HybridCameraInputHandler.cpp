@@ -1,4 +1,5 @@
 #include "HybridCameraInputHandler.h"
+#include<iostream>
 
 namespace HybridRenderer
 {
@@ -8,7 +9,7 @@ namespace HybridRenderer
 
 		// set the rotation and movementStep speed
 		rotationStep = 0.13;
-		movementStep = 5;
+		movementStep = 250;
 
 		cameraMoveDirection = Ogre::Vector3::ZERO;
 		cameraRotation = Ogre::Quaternion::IDENTITY;
@@ -22,6 +23,7 @@ namespace HybridRenderer
 	std::pair<Ogre::Vector3*, Ogre::Quaternion*> CameraInputHandler::getTransformations()
 	{
 		std::pair<Ogre::Vector3*, Ogre::Quaternion*> A(&cameraMoveDirection, &cameraRotation);
+		std::cout<<cameraMoveDirection<<"\n";
 		return A;
 	}
 	// MouseListener

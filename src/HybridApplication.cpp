@@ -68,19 +68,21 @@ namespace HybridRenderer
 	void Application::createScene()
 	{
 		chooseSceneManager();
+		//Create a camera and set up a viewport displaying it.
 		Ogre::Camera *cam = sceneManager->createCamera("Camera");
 		Ogre::Viewport *vp = root->getAutoCreatedWindow()->addViewport(cam);
 		vp->setBackgroundColour(Ogre::ColourValue(0.0f,0.0f,0.0f));
 		cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
 				Ogre::Real(vp->getActualHeight()));
-
 		//Create a SceneNode to attach the camera with.
 		Ogre::SceneNode *camNode = sceneManager->getRootSceneNode()-> \
 					   createChildSceneNode("CameraNode");
 		//Set its position, direction  
 		camNode->setPosition(Ogre::Vector3(-20,20,150));
-		//camNode->lookAt(Ogre::Vector3(0,0,0), Ogre::Node::TS_LOCAL);
-		                 
+		camNode->lookAt(Ogre::Vector3(0,0,0), Ogre::Node::TS_LOCAL);
+		//Attach the camera to the sceneNode		
+		camNode->attachObject(cam);
+
 		//I'm adding a statue of liberty model.
 		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 		Ogre::Entity *libertyStatue = sceneManager->createEntity("Liberty", "Liberty.mesh");
