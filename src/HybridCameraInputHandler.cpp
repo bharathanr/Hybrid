@@ -2,8 +2,9 @@
 
 namespace HybridRenderer
 {
-        CameraInputHandler::CameraInputHandler()  
+        CameraInputHandler::CameraInputHandler(Ogre::SceneNode *camNd)  
 	{
+		camNode = camNd;
 		//Variables for camera movementStepment.
 
 		// set the rotation and movementStep speed
@@ -18,13 +19,6 @@ namespace HybridRenderer
         {
         }
 	
-	//Feedback to frame listener
-	std::pair<Ogre::Vector3*, Ogre::Quaternion*> CameraInputHandler::getTransformations()
-	{
-		std::pair<Ogre::Vector3*, Ogre::Quaternion*> \
-			A(&cameraMoveDirection, &cameraRotation);
-		return A;
-	}
 	// MouseListener
 	bool CameraInputHandler::mouseMoved(const OIS::MouseEvent &evt) 
 	{

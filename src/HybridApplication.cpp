@@ -83,13 +83,16 @@ namespace HybridRenderer
 		// set its position, direction  
 		//cam->setPosition(Ogre::Vector3(-20,20,150));
 		//cam->lookAt(Ogre::Vector3(0,0,0));
+		
 		//Attach it to a scene node
 		Ogre::SceneNode *node = \
 			sceneManager->getRootSceneNode()->createChildSceneNode("CameraNode",
 					Ogre::Vector3(-20, 20, 150));
+		
 		//node->setPosition();
 		//node->lookAt(Ogre::Vector3(0,0,0), Ogre::Node::TS_WORLD);
 		node->attachObject(cam);
+		
 		//I'm adding a statue of liberty model.
 		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 		Ogre::Entity *libertyStatue = sceneManager->createEntity("Liberty", "Liberty.mesh");
@@ -152,8 +155,10 @@ namespace HybridRenderer
 		win->getCustomAttribute("WINDOW", &hWnd);
 		inputListener = new InputListener(hWnd);
 		
+		//Get camera SceneNode
+		Ogre::SceneNode *node = sceneManager->getSceneNode("CameraNode");		
 		//Create InputHandlers.
-	        camInputHandler = new CameraInputHandler();
+	        camInputHandler = new CameraInputHandler(node);
 		smInputHandler = new StateManagerInputHandler(stateManager);	
 		//Now register InputHandlers with the InputListener.
 		inputListener->registerInputHandler(camInputHandler);
