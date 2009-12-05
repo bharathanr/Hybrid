@@ -41,9 +41,11 @@ namespace HybridRenderer
 		initialiseResources();
 		//6.Create a scene.
 		createScene();
-		//7.Set up OIS
+		//7.Register FrameListeners
+		createFrameListeners();
+		//8.Set up OIS
 		setupInputSystem();
-		//8.Keep looping until exit.
+		//9.Keep looping until exit.
 		startRenderLoop();
 		return true;
 	}		
@@ -72,10 +74,12 @@ namespace HybridRenderer
 		cam->setAspectRatio(Ogre::Real(vp->getActualWidth()) /
 				Ogre::Real(vp->getActualHeight()));
 
-		//temp
-		// set its position, direction  
-		cam->setPosition(Ogre::Vector3(-20,20,150));
-		cam->lookAt(Ogre::Vector3(0,0,0));
+		//Create a SceneNode to attach the camera with.
+		Ogre::SceneNode *camNode = sceneManager->getRootSceneNode()-> \
+					   createChildSceneNode("CameraNode");
+		//Set its position, direction  
+		camNode->setPosition(Ogre::Vector3(-20,20,150));
+		//camNode->lookAt(Ogre::Vector3(0,0,0), Ogre::Node::TS_LOCAL);
 		                 
 		//I'm adding a statue of liberty model.
 		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
@@ -145,6 +149,16 @@ namespace HybridRenderer
 		//Now register InputHandlers with the InputListener.
 		inputListener->registerInputHandler(camInputHandler);
 		inputListener->registerInputHandler(smInputHandler);
+	}
+
+	void Application::createFrameListeners()
+	{
+		//Find the SceneNode the camera is attached to
+		Ogre::SceneNode *cn = sceneManager->getSceneNode("CameraNode");
+		//Create a FrameListener
+		FrameListener *fl = new FrameListener(sceneManager,cn,camInputHandler);
+		//Register it.
+		root->addFrameListener(fl);
 	}
 
 	void Application::startRenderLoop()

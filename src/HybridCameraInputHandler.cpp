@@ -8,7 +8,7 @@ namespace HybridRenderer
 
 		// set the rotation and movementStep speed
 		rotationStep = 0.13;
-		movementStep = 250;
+		movementStep = 5;
 
 		cameraMoveDirection = Ogre::Vector3::ZERO;
 		cameraRotation = Ogre::Quaternion::IDENTITY;
