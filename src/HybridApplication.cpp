@@ -89,7 +89,6 @@ namespace HybridRenderer
 		//libertyStatue->setMaterialName("Ogre/Skin");
 		Ogre::SceneNode *node1 = \
 			sceneManager->getRootSceneNode()->createChildSceneNode("LibertyNode");
-		//node1->yaw(Ogre::Degree(-180));
 		node1->attachObject(libertyStatue);
 	}
 
@@ -148,6 +147,7 @@ namespace HybridRenderer
 		//Create InputHandlers.
 	        camInputHandler = new CameraInputHandler();
 		smInputHandler = new StateManagerInputHandler(stateManager);	
+		
 		//Now register InputHandlers with the InputListener.
 		inputListener->registerInputHandler(camInputHandler);
 		inputListener->registerInputHandler(smInputHandler);

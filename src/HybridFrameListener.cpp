@@ -24,7 +24,8 @@ namespace HybridRenderer
 	{
 		std::pair<Ogre::Vector3*, Ogre::Quaternion*> result =  camInputHandler->getTransformations();
 		Ogre::Vector3 camMove = *(result.first);
-		camNode->translate(camMove * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+		camNode->translate(camMove * evt.timeSinceLastFrame, 
+				Ogre::Node::TS_LOCAL);
 		return true;
 	}
 }

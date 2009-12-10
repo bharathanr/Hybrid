@@ -23,7 +23,7 @@ namespace HybridRenderer
 	std::pair<Ogre::Vector3*, Ogre::Quaternion*> CameraInputHandler::getTransformations()
 	{
 		std::pair<Ogre::Vector3*, Ogre::Quaternion*> A(&cameraMoveDirection, &cameraRotation);
-		std::cout<<cameraMoveDirection<<"\n";
+		std::cout<<(cameraMoveDirection == Ogre::Vector3::ZERO)<<"\n";
 		return A;
 	}
 	// MouseListener
@@ -41,7 +41,7 @@ namespace HybridRenderer
 		return true;
 	}
 
-	bool CameraInputHandler::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID btn) 
+	bool CameraInputHandler::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID btn)
 	{
 		return true;
 	}
@@ -88,12 +88,12 @@ namespace HybridRenderer
 			
 			default:
 				break;
-		}
+		} 
 		return true;
 	}
 	bool CameraInputHandler::keyReleased(const OIS::KeyEvent &evt) 
-	{	
-		switch (evt.key)
+	{
+		/*switch (evt.key)
 		{
 			case OIS::KC_UP:
 			case OIS::KC_W:
@@ -127,7 +127,7 @@ namespace HybridRenderer
 	 
 			default:
 			    break;
-		} // switch
+		} // switch*/
 
 		return true;
 	}
