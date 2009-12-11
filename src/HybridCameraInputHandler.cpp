@@ -23,7 +23,7 @@ namespace HybridRenderer
 	std::pair<Ogre::Vector3*, Ogre::Quaternion*> CameraInputHandler::getTransformations()
 	{
 		std::pair<Ogre::Vector3*, Ogre::Quaternion*> A(&cameraMoveDirection, &cameraRotation);
-		std::cout<<(cameraMoveDirection == Ogre::Vector3::ZERO)<<"\n";
+		std::cout<<(cameraMoveDirection)<<"\n";
 		return A;
 	}
 	// MouseListener

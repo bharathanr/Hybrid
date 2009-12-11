@@ -168,9 +168,9 @@ namespace HybridRenderer
 
 		while (stateManager->getCurrentState() != SHUTDOWN) 
 		{
-			inputListener->capture();
 			// run the message pump (Eihort)
 			Ogre::WindowEventUtilities::messagePump();
+			inputListener->capture();
 			root->renderOneFrame();
 		}
 
