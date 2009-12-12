@@ -31,10 +31,6 @@ namespace HybridRenderer
 	{
 		if (evt.state.buttonDown(OIS::MB_Right))
 		{
-			camNode->yaw(Ogre::Degree(-rotationStep * evt.state.X.rel), Ogre::Vector3::UNIT_Z);
-			camNode->pitch(Ogre::Degree(-rotationStep * evt.state.Y.rel),Ogre::Vector3::UNIT_Y);
-			//This is not a commutative multiplication...
-			cameraRotation = pitch * yaw;
 		}
 
 		

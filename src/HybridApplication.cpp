@@ -64,12 +64,6 @@ namespace HybridRenderer
         	sceneManager = root->createSceneManager(Ogre::ST_GENERIC, "HybridSceneManager");
 	}	
 
-	void Application::createFrameListeners()
-	{
-		FrameListener *listener = new FrameListener(sceneManager);
-		root->addFrameListener(listener);
-	}
-
 	void Application::createScene()
 	{
 		chooseSceneManager();
@@ -88,13 +82,6 @@ namespace HybridRenderer
 		//Attach the camera to the sceneNode		
 		camNode->attachObject(cam);
 
-		//Attach it to a scene node
-		Ogre::SceneNode *node = \
-			sceneManager->getRootSceneNode()->createChildSceneNode("CameraNode",
-					Ogre::Vector3(-20, 20, 150));
-		
-		node->attachObject(cam);
-		
 		//I'm adding a statue of liberty model.
 		sceneManager->setAmbientLight(Ogre::ColourValue(1, 1, 1));
 		Ogre::Entity *libertyStatue = sceneManager->createEntity("Liberty", "Liberty.mesh");

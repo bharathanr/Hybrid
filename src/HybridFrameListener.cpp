@@ -6,9 +6,13 @@
 namespace HybridRenderer
 {
 	
-	FrameListener::FrameListener(Ogre::SceneManager *sceneMgr)
+	FrameListener::FrameListener(Ogre::SceneManager *sceneMgr, \
+			Ogre::SceneNode* camNd, \
+			CameraInputHandler* cih)
 	{
 		sceneManager = sceneMgr;
+		camNode = camNd;
+		camInputHandler = cih;
 	}
 
 	FrameListener::~FrameListener()
