@@ -41,10 +41,10 @@ namespace HybridRenderer
 		initialiseResources();
 		//6.Create a scene.
 		createScene();
-		//7.Register FrameListeners
-		createFrameListeners();
-		//8.Set up OIS
+		//7.Set up OIS
 		setupInputSystem();
+		//8.Register FrameListeners
+		createFrameListeners();
 		//9.Keep looping until exit.
 		startRenderLoop();
 		return true;
