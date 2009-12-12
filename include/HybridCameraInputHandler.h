@@ -14,8 +14,6 @@ namespace HybridRenderer
 		private:
 			Ogre::Real movementStep;
 			Ogre::Real rotationStep;
-		//Debug
-		public:
 			Ogre::Vector3 cameraMoveDirection;
 			Ogre::Quaternion cameraRotation;
 			Ogre::SceneNode *camNode;
