@@ -1,4 +1,4 @@
-DEFINES =
+DEFINES = -g
 LIBS = OGRE OIS
 CXX = g++
 CXXFLAGS = $(shell pkg-config --cflags $(LIBS)) $(DEFINES) 

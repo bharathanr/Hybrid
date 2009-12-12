@@ -14,12 +14,15 @@ namespace HybridRenderer
 		private:
 			Ogre::Real movementStep;
 			Ogre::Real rotationStep;
+		//Debug
+		public:
 			Ogre::Vector3 cameraMoveDirection;
 			Ogre::Quaternion cameraRotation;
 			Ogre::SceneNode *camNode;
 		public:
 			CameraInputHandler(Ogre::SceneNode *camNd);
 			~CameraInputHandler();
+		        std::pair<Ogre::Vector3*, Ogre::Quaternion*> getTransformations();
 			// Functions to deal with mouse input.
 			virtual bool mouseMoved(const OIS::MouseEvent &evt); 
 			virtual bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID);
