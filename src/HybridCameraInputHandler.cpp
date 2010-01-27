@@ -12,7 +12,9 @@ namespace HybridRenderer
 		movementStep = 250;
 
 		cameraMoveDirection = Ogre::Vector3::ZERO;
-		cameraRotation = Ogre::Quaternion::IDENTITY;
+		//Take note of this. We need to initialise rotations to the
+		//initial orientation of the camera.
+		cameraRotation = camNd->getOrientation();
 	}
 
         CameraInputHandler::~CameraInputHandler() 
@@ -31,6 +33,8 @@ namespace HybridRenderer
 	{
 		if (evt.state.buttonDown(OIS::MB_Right))
 		{
+			//Yaw is relative to the global coordinate system
+			//Pitch is relative to the local coordinate system
 		}
 
 		

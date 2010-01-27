@@ -30,6 +30,7 @@ namespace HybridRenderer
 		initialiseOgre();
 		//2.Initialise resources from resources.cfg - For now!
 		initialiseResourcePaths();
+		
 		//3.Try to initialise a render system.
 		//Uses the config dialog and ogre.cfg restoration for now.
 		if(!setupRenderSystem())
