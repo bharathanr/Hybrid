@@ -79,6 +79,8 @@ namespace HybridRenderer
 		//Set its position, direction  
 		camNode->setPosition(Ogre::Vector3(-20,20,150));
 		camNode->lookAt(Ogre::Vector3(0,0,0), Ogre::Node::TS_LOCAL);
+		//camNode->rotate( Ogre::Vector3::UNIT_Y, Ogre::Degree(180),\
+			       	Ogre::Node::TS_PARENT);
 		//Attach the camera to the sceneNode		
 		camNode->attachObject(cam);
 
