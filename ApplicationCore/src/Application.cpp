@@ -14,3 +14,26 @@
    limitations under the License.
 */
 
+#ifndef APPLICATION_H
+#define APPLICATION_H
+
+//The base class for all my applications
+
+class InputSystem;
+class RayTracer;
+class RasterEngine;
+class StateManager;
+
+class Application
+{
+	private:
+		StateManager* state_manager;
+		RayTracer* ray_tracer;
+		RasterEngine* raster_engine;
+		InputSystem* input_system;
+	public:
+		Application();
+		~Application();		
+};
+
+#endif
