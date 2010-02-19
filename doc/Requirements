@@ -1,0 +1,35 @@
+Hybrid Renderer
+----------------
+Goal: To create a complex scene using OGRE and add a ray traced object to it.
+
+Features
+---------
+1. Visualise a scene and edit it.
+2. View the rasterised part of the scene.
+3. View the ray traced object alone.
+4. View the Hybrid scene.
+
+Note: You should allow viewing 3 and 4 as the scene is built.
+
+Design Goals
+-------------
+1. Cross platform. 
+2. Offline rendering
+   * Allow saving images in the PNG format.
+   * Allow visualisation through the raster engine.  
+3. Loose coupling of components.
+   * Reusable, modular ray tracer
+     - Allow maximum reuse for upgrade to any other kind of ray tracer than the one implemented.
+     - Modularity is key for testing with different acceleration structures like a BVH and a 
+       K-D tree
+   * Independant Application framework.
+     - Application base class 
+     - Flexible window creation and management
+     - StateManager i/f
+     - RasterEngine i/f
+     - Clean i/f to the ray tracer to allow changes
+4. Allow the use of graphics engines other than OGRE.
+5. Allow N threads for the ray tracer + one thread for the rasteriser.
+6. Allow for some way to update the ray tracer's scene graph : Needs thought.
+7. Allow for importing different formats. ?? 
+  

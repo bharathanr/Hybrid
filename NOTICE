@@ -1,0 +1,18 @@
+   =========================================================================
+   ==  NOTICE file for use with the Apache License, Version 2.0,  ==
+   =========================================================================
+
+   Bharathans Hybrid Renderer
+   Copyright 2010 and forever Bharathan Rajaram
+
+   This product includes software developed by Bharathan Rajaram.
+
+   An object oriented graphics engine is provided by the OGRE library package,
+   which is open source software, under the MIT license. You can find it at:
+   http://www.ogre3d.org/
+
+   This project makes use of the Boost C++ libraries for various tasks. Boost is
+   available from http://www.boost.org/ and is under the Boost license. Boost is
+   open source.
+
+
