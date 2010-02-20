@@ -4,14 +4,13 @@
 OUTDIR=./bin
 
 #Compilation/Linking/Loading flags
-DEFINES = -g -L/usr/local/boost_1_41_0/lib/
-BOOST_FLAGS = 
+DEFINES = -g
 LIBS =
 BOOST_LIBS = boost_signals
-CXXFLAGS = $(shell pkg-config --cflags $(LIBS)) -l$(BOOST_LIBS) $(DEFINES) 
+CXXFLAGS = $(DEFINES)
 CPPFLAGS = -I ../src
 LD = g++
-LDFLAGS = $(shell pkg-config --libs $(LIBS)) -l$(BOOST_LIBS)
+LDFLAGS = -L/usr/local/boost_1_41_0/ -l$(BOOST_LIBS)
 
 #Custom variables
 BINARIES = test1
